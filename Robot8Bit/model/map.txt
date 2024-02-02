@@ -1,0 +1,23 @@
+B:1, D:10, W:1
+BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB
+B                                BBBBBBB
+B      P                               B
+B                                      B
+B                                      B
+B               BBBB                   B
+B                                      B
+B                 AAAAAAAAAAAA         B
+B                        AAAAAAAAA     B
+B       BBBBBBBB             AAAAAA    B
+B        B           AAAAAAAAA         B
+B        B                             B
+B   BBBBBB                             B
+B                                      B
+B                                      B
+B                      BBBBBBBBBBBBBBBBB
+B           BBBBBBBBBBBB               B
+B                                      B
+B                                      B
+B                                      B
+B                                      B
+BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB
