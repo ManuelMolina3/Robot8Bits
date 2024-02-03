@@ -1,6 +1,8 @@
 import pygame
 from config import *
 
+sea_img = pygame.image.load("")
+
 
 class Sea(pygame.sprite.Sprite):
     def __init__(self, game, x, y):
@@ -14,8 +16,7 @@ class Sea(pygame.sprite.Sprite):
         self.width = TILESIZE
         self.height = TILESIZE
 
-        self.image = self.game.terrain_spritesheet.get_sprite(920, 160, self.width, self.height)
-
+        self.sprite = sea_img
         self.rect = self.image.get_rect()
         self.rect.x = self.x
         self.rect.y = self.y

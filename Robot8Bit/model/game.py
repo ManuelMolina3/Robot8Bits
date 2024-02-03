@@ -5,6 +5,7 @@ import sys
 from ground import Ground
 from wall import Wall
 from sea import Sea
+from spritesheet import Spritesheet
 
 
 class Game:
@@ -13,6 +14,7 @@ class Game:
         self.screen = pygame.display.set_mode((WIN_WIDTH, WIN_HEIGHT))
         self.clock = pygame.time.Clock()
         self.running = True
+        self.character_spritesheet = Spritesheet('../assets/player/playerSprite.png')
 
     mapa_elegido = 'map.txt'
 

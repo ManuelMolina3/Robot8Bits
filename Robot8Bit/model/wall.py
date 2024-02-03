@@ -1,6 +1,8 @@
 import pygame
 from config import *
 
+wall_img = pygame.image.load("")
+
 
 class Wall(pygame.sprite.Sprite):
     def __init__(self, game, x, y):
@@ -14,8 +16,7 @@ class Wall(pygame.sprite.Sprite):
         self.width = TILESIZE
         self.height = TILESIZE
 
-        self.image = self.game.terrain_spritesheet.get_sprite(960, 448, self.width, self.height)
-
+        self.sprite = wall_img
         self.rect = self.image.get_rect()
         self.rect.x = self.x
         self.rect.y = self.y

@@ -1,9 +1,10 @@
 import pygame
 import random
-from hero.models.wall import Wall
+from model.wall import Wall
 
 water_protected = pygame.image.load("")
 bomb = pygame.image.load("")
+diamond = pygame.image.load("")
 
 
 class Things:
@@ -35,4 +36,4 @@ class Bomb(Things):
 
 class Diamond(Things):
     def __init__(self, position):
-        super().__init__(water_protected, position, [42, 48])
+        super().__init__(diamond, position, [42, 48])
