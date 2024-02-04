@@ -1,22 +1,17 @@
 import pygame
-from config import *
-
-sea_img = pygame.image.load("")
 
 
 class Sea(pygame.sprite.Sprite):
-    def __init__(self, game, x, y):
-        self.game = game
-        self._layer = SEA_LAYER
-        self.groups = self.game.all_sprites, self.game.lake
-        pygame.sprite.Sprite.__init__(self, self.groups)
-
-        self.x = x * TILESIZE
-        self.y = y * TILESIZE
-        self.width = TILESIZE
-        self.height = TILESIZE
-
-        self.sprite = sea_img
+    def __init__(self, row, column, size):
+        super().__init__()
+        self.image = pygame.image.load("../assets/wallsAndWater/Water.jpg").convert()
+        self.image = pygame.transform.scale(self.image, (size, size))
         self.rect = self.image.get_rect()
-        self.rect.x = self.x
-        self.rect.y = self.y
+        self.rect.x = column * size
+        self.rect.y = row * size
+        self.row = row
+        self.column = column
+        self.posicion = (row, column)
+
+    def dibujar(self, screen):
+        screen.blit(self.image, self.rect)
