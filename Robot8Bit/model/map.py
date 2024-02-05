@@ -1,12 +1,11 @@
-from sea import Sea
-from wall import Wall
+from obstacle import Sea, Wall
 from items import Potion, WaterPotion, Bomb, Diamond
 from player import Player
 import random
 
 
 class Map:
-    def __init__(self, archivo, size, num_diamond=10, num_water_potion=1, num_bomb=3, num_potion=2):
+    def __init__(self, archivo, size, num_diamond=3, num_water_potion=2, num_bomb=6, num_potion=2):
         self.diamonds = []
         self.player = None
         self.walls = []
@@ -44,7 +43,7 @@ class Map:
         while diamond_add < self.num_diamonds:
             row = random.randint(0, self.rows - 2)
             column = random.randint(0, self.columns - 1)
-            if all(((row, column) not in
+            if all(((row, column) not in (wall.position for wall in self.walls),
                     (row, column) != self.player.position,
                     (row, column) not in (diamond.position for diamond in self.diamonds))):
                 diamond = Diamond(row, column, self.size)
@@ -106,17 +105,17 @@ class Map:
         return None
 
     def add_bomb(self, row, column):
-        for bombs in self.bombs:
-            if bombs.posicion == [row, column]:
-                return bombs
+        for bomb in self.bombs:
+            if bomb.position == [row, column]:
+                return bomb
         return None
 
     def destroyed_wall(self, wall):
         self.walls.remove(wall)
-        print(wall.posicion)
+        print(wall.position)
 
-    def quit_water_potion(self, water_potions):
-        self.water_potions.remove(water_potions)
+    def quit_water_potion(self, water_potion):
+        self.water_potions.remove(water_potion)
 
     def draw(self, screen):
         for walls in self.walls:

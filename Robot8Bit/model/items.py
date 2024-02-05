@@ -3,7 +3,7 @@ import pygame
 potion_img = pygame.image.load("../assets/potions/potion.png")
 bomb_img = pygame.image.load("../assets/potions/bomb.png")
 water_potion_img = pygame.image.load("../assets/potions/water_potion.png")
-diamond_img = pygame.image.load("../assets/Diamod.jpg")
+diamond_img = pygame.image.load("../assets/diamond.jpg")
 
 
 class Item:
@@ -46,13 +46,13 @@ class Bomb(Item):
         ]
 
         for row, column in scope:
-            if 0 <= row < mapa.row and 0 <= column < mapa.columns:
+            if 0 <= row < mapa.rows and 0 <= column < mapa.columns:
                 wall = mapa.add_wall(row, column)
                 if wall:
                     mapa.destroyed_wall(wall)
                 bomba = mapa.add_bomb(row, column)
                 if bomba:
-                    bomba.explotar(map, position)
+                    bomba.explotar(mapa, position)
 
     def draw(self, screen):
         screen.blit(self.image, (self.position[1] * self.rect.width, self.position[0] * self.rect.height))
@@ -63,4 +63,4 @@ class Diamond(Item):
         super().__init__(diamond_img, row, column, size)
 
     def draw(self, screen):
-        screen.blit(self.image, self.rect)
+        screen.blit(self.image, (self.position[1] * self.rect.width, self.position[0] * self.rect.height))

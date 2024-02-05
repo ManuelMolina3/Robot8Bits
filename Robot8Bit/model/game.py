@@ -55,7 +55,7 @@ class Game:
         potion_text = font.render(f" {len(self.map.player.potions)}", True, BLACK)
         self.screen.blit(potion_text, (225, self.rows * self.size + 5))
 
-        diamond_img = pygame.image.load("../assets/Diamod.jpg")
+        diamond_img = pygame.image.load("../assets/diamond.jpg")
         diamond_img = pygame.transform.scale(diamond_img, (self.size // 2, self.size // 2))
 
         self.screen.blit(diamond_img, (10, self.rows * self.size + 5))
@@ -63,19 +63,33 @@ class Game:
         diamond_text = font.render(f" {len(self.map.player.diamonds)}", True, BLACK)
         self.screen.blit(diamond_text, (25, self.rows * self.size + 5))
 
-    def game_over(self):
+    def game_over_message(self):
         font = pygame.font.Font(None, 50)
         game_over_text = font.render("Game Over!", True, RED)
-        self.screen.blit(game_over_text,
-                         (self.columns * self.size // 2 - 200, self.rows * self.size // 2))
+        background = pygame.Surface((self.columns * self.size, self.rows * self.size))
+        background.fill(BLACK)
+
+        x = (background.get_width() - game_over_text.get_width()) // 2
+        y = (background.get_height() - game_over_text.get_height()) // 2
+
+        background.blit(game_over_text, (x, y))
+
+        self.screen.blit(background, (0, 0))
         pygame.display.flip()
         pygame.time.wait(1500)
 
     def winner_message(self):
         font = pygame.font.Font(None, 50)
-        winner_text = font.render("Congratulation, You are winner!", True, RED)
-        self.screen.blit(winner_text,
-                         (self.columns * self.size // 2 - 150, self.rows * self.size // 2))
+        winner_text = font.render("Congratulation, You are winner!", True, BLACK)
+        background = pygame.Surface((self.columns * self.size, self.rows * self.size))
+        background.fill(GREEN)
+
+        x = (background.get_width() - winner_text.get_width()) // 2
+        y = (background.get_height() - winner_text.get_height()) // 2
+
+        background.blit(winner_text, (x, y))
+
+        self.screen.blit(background, (0, 0))
         pygame.display.flip()
         pygame.time.wait(1500)
 
@@ -162,5 +176,5 @@ class Game:
             self.winner_message()
             self.reboot_screem()
         else:
-            self.game_over()
+            self.game_over_message()
             self.reboot_screem()

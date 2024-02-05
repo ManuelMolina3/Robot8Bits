@@ -47,8 +47,8 @@ class Player(pygame.sprite.Sprite):
             self.image = pygame.transform.scale(self.image, (size, size))
             self.image.set_colorkey(WHITE)
 
-        for seas in mapa.seas:
-            if new_position == [seas.row, seas.column]:
+        for sea in mapa.seas:
+            if new_position == [sea.row, sea.column]:
                 if self.water_potion_effect:
                     self.image = player_water
                     self.image = pygame.transform.scale(self.image, (size, size))
@@ -56,7 +56,7 @@ class Player(pygame.sprite.Sprite):
                     self.life -= 2
                     print("Life:", self.life)
                 break
-            if self.position == [seas.row, seas.column] and new_position not in [(w.row, w.column) for w in
+            if self.position == [sea.row, sea.column] and new_position not in [(w.row, w.column) for w in
                                                                                    mapa.seas]:
                 if self.water_potion_effect:
                     self.quit_water_potion()
@@ -117,15 +117,15 @@ class Player(pygame.sprite.Sprite):
             state = state_not_actual.pop(0)
             state.actual = True
 
-    def explode_bombs(self, mapa, wall):
+    def explode_bombs(self, mapa):
         if self.bombs:
             bomb = self.bombs.pop(0)
-            bomb.destroy_wall(mapa, wall.position)
+            bomb.destroy_wall(mapa, self.position)
 
     def potion_taken(self):
         if self.potions:
             if self.life >= 10:
-                print("Ya tienes la vida al máximo")
+                print("High life")
             else:
                 self.life = min(10, self.life + 5)
                 self.potions.remove(self.potions[0])
