@@ -5,7 +5,7 @@ from player import Player
 import random
 
 
-class Mapa:
+class Map:
     def __init__(self, archivo, size, num_diamond=10, num_water_potion=1, num_bomb=3, num_potion=2):
         self.diamonds = []
         self.player = None
@@ -111,9 +111,9 @@ class Mapa:
                 return bombs
         return None
 
-    def destroyed_wall(self, muro):
-        self.walls.remove(muro)
-        print(muro.posicion)
+    def destroyed_wall(self, wall):
+        self.walls.remove(wall)
+        print(wall.posicion)
 
     def quit_water_potion(self, water_potions):
         self.water_potions.remove(water_potions)
