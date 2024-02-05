@@ -1,6 +1,5 @@
 import pygame
 
-
 player_stay = pygame.image.load("../assets/player/PlayerStay.jpg")
 player_right = pygame.image.load("../assets/player/PlayerRightWalk1.jpg")
 player_left = pygame.image.load("../assets/player/PlayerLeftWalk1.jpg")
@@ -17,8 +16,6 @@ class Player(pygame.sprite.Sprite):
         self.rect = self.image.get_rect()
         self.position = [row, column]
         self.life = 10
-        self.parpadear = False
-        self.tiempo_parpadeo = 0
         self.water_potions = []
         self.diamonds = []
         self.bombs = []
@@ -45,8 +42,8 @@ class Player(pygame.sprite.Sprite):
             self.image = player_right
             self.image = pygame.transform.scale(self.image, (size, size))
 
-        for water in mapa.water:
-            if new_position == [water.fila, water.columna]:
+        for seas in mapa.seas:
+            if new_position == [seas.row, seas.column]:
                 if self.water_potion_effect:
                     self.image = player_water
                     self.image = pygame.transform.scale(self.image, (size, size))
@@ -54,14 +51,14 @@ class Player(pygame.sprite.Sprite):
                     self.life -= 2
                     print("Life:", self.life)
                 break
-            if self.position == [water.row, water.column] and new_position not in [(w.row, w.column) for w in
-                                                                                   mapa.water]:
+            if self.position == [seas.row, seas.column] and new_position not in [(w.row, w.column) for w in
+                                                                                   mapa.seas]:
                 if self.water_potion_effect:
                     self.quit_water_potion()
                     self.water_potion_effect = False
                 break
-        if new_position not in [(diamond.posicion[0], diamond.posicion[1]) for diamond in mapa.diamonds]:
-            for wall in mapa.wall:
+        if new_position not in [(diamond.position[0], diamond.position[1]) for diamond in mapa.diamonds]:
+            for wall in mapa.walls:
                 if new_position == [wall.row, wall.column]:
                     self.life -= 1
                     print("¡Chocaste con un obstáculo! Vidas restantes:", self.life)
@@ -103,13 +100,11 @@ class Player(pygame.sprite.Sprite):
     def potion_water_taken(self):
         if self.water_potions:
             state_actual = self.water_potions.pop(0)
-            if not state_actual.usado:
+            if not state_actual.used:
                 self.water_potion_effect = True
-                print("Estás usando un traje de agua")
-            else:
-                print("Este traje de agua ya ha sido usado.")
+                print("Potion water is used")
         else:
-            print("No tienes trajes de agua disponibles.")
+            print("Don´t have water potion")
 
     def quit_water_potion(self):
         state_not_actual = [state for state in self.water_potions if not state.actual]

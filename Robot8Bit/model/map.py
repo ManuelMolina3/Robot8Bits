@@ -14,12 +14,12 @@ class Map:
         self.water_potions = []
         self.bombs = []
         self.potions = []
-        self.load_mapa(archivo)
         self.size = size
         self.num_bombs = num_bomb
         self.num_water_potions = num_water_potion
         self.num_diamonds = num_diamond
         self.num_potions = num_potion
+        self.load_mapa(archivo)
 
     def load_mapa(self, archivo):
         with open(archivo, 'r') as archivo:
@@ -46,7 +46,7 @@ class Map:
             column = random.randint(0, self.columns - 1)
             if all(((row, column) not in
                     (row, column) != self.player.position,
-                    (row, column) not in (diamond.posicion for diamond in self.diamonds))):
+                    (row, column) not in (diamond.position for diamond in self.diamonds))):
                 diamond = Diamond(row, column, self.size)
                 self.diamonds.append(diamond)
                 diamond_add += 1
@@ -59,7 +59,7 @@ class Map:
                     (row, column) != self.player.position,
                     (row, column) not in (diamonds.position for diamonds in self.diamonds),
                     (row, column) not in (water_potions.position for water_potions in self.water_potions),
-                    (row, column) not in (seas.positions for seas in self.seas))):
+                    (row, column) not in (seas.position for seas in self.seas))):
                 water_potion = WaterPotion(row, column, self.size)
                 self.water_potions.append(water_potion)
                 water_potion_used += 1

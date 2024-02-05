@@ -11,7 +11,7 @@ class Sea(pygame.sprite.Sprite):
         self.rect.y = row * size
         self.row = row
         self.column = column
-        self.posicion = (row, column)
+        self.position = (row, column)
 
-    def dibujar(self, screen):
+    def draw(self, screen):
         screen.blit(self.image, self.rect)

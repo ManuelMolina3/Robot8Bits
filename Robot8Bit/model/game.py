@@ -10,7 +10,7 @@ class Game:
         pygame.init()
         self.rows = row
         self.columns = column
-        self.size = size
+        self.size= size
         self.clock = pygame.time.Clock()
         self.screen = pygame.display.set_mode((column * size, row * size + 30))
         self.playing = True
@@ -28,7 +28,7 @@ class Game:
 
         self.screen.blit(bomb_img, (160, self.rows * self.size + 5))
 
-        bomb_text = font.render(f" {len(self.map.player.bombas)}", True, BLACK)
+        bomb_text = font.render(f" {len(self.map.player.bombs)}", True, BLACK)
         self.screen.blit(bomb_text, (175, self.rows * self.size + 5))
 
         life_img = pygame.image.load("../assets/Heart.jpg")
@@ -39,7 +39,7 @@ class Game:
         life_text = font.render(f" {self.map.player.life}", True, BLACK)
         self.screen.blit(life_text, (70, self.rows * self.size + 5))
 
-        water_potion_img = pygame.image.load("../assets/")
+        water_potion_img = pygame.image.load("../assets/potions/water_potion.png")
         water_potion_img = pygame.transform.scale(water_potion_img, (self.size // 2, self.size // 2))
 
         self.screen.blit(water_potion_img, (110, self.rows * self.size + 5))
@@ -47,12 +47,12 @@ class Game:
         water_potion_text = font.render(f" {len(self.map.player.water_potions)}", True, BLACK)
         self.screen.blit(water_potion_text, (125, self.rows * self.size + 5))
 
-        potion_img = pygame.image.load("../assets/potions/Potion.jpg")
+        potion_img = pygame.image.load("../assets/potions/potion.png")
         potion_img = pygame.transform.scale(potion_img, (self.size // 2, self.size // 2))
 
         self.screen.blit(potion_img, (210, self.rows * self.size + 5))
 
-        potion_text = font.render(f" {len(self.map.player.pociones)}", True, BLACK)
+        potion_text = font.render(f" {len(self.map.player.potions)}", True, BLACK)
         self.screen.blit(potion_text, (225, self.rows * self.size + 5))
 
         diamond_img = pygame.image.load("../assets/Diamod.jpg")

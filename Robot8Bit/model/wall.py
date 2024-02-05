@@ -14,7 +14,6 @@ class Wall(pygame.sprite.Sprite):
         self.column = column
         self.position = (row, column)
         self.size = size
-        self.hitbox = (self.position[0], self.position[1], self.size[0], self.size[1])
 
-    def dibujar(self, screen):
+    def draw(self, screen):
         screen.blit(self.image, self.rect)

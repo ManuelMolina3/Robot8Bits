@@ -4,7 +4,7 @@ rows = 30
 columns = 50
 size = 30
 map_link = 'map.txt'
-background_image_link = 'assets/background.jpg'
+background_image_link = '../assets/background_screem.jpg'
 
 game = Game(rows, columns, size, map_link, background_image_link)
 
