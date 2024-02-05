@@ -1,10 +1,10 @@
 import pygame
-
-player_stay = pygame.image.load("../assets/player/PlayerStay.jpg")
-player_right = pygame.image.load("../assets/player/PlayerRightWalk1.jpg")
-player_left = pygame.image.load("../assets/player/PlayerLeftWalk1.jpg")
-player_up = pygame.image.load("../assets/player/PlayerWalk1.jpg")
-player_down = pygame.image.load("../assets/player/PlayerWalk1.jpg")
+from config import *
+player_stay = pygame.image.load("../assets/player/playerStay.png")
+player_right = pygame.image.load("../assets/player/playerRightWalk.png")
+player_left = pygame.image.load("../assets/player/playerLeftWalk.png")
+player_up = pygame.image.load("../assets/player/playerWalk.png")
+player_down = pygame.image.load("../assets/player/PlayerWalk.png")
 player_water = pygame.image.load("../assets/player/playerWater.png")
 
 
@@ -13,6 +13,7 @@ class Player(pygame.sprite.Sprite):
         super().__init__()
         self.image = player_stay
         self.image = pygame.transform.scale(self.image, (size, size))
+        self.image.set_colorkey(WHITE)
         self.rect = self.image.get_rect()
         self.position = [row, column]
         self.life = 10
@@ -29,18 +30,22 @@ class Player(pygame.sprite.Sprite):
             new_position[0] -= 1
             self.image = player_up
             self.image = pygame.transform.scale(self.image, (size, size))
+            self.image.set_colorkey(WHITE)
         elif direction == "down" and new_position[0] < mapa.rows - 1:
             new_position[0] += 1
             self.image = player_down
             self.image = pygame.transform.scale(self.image, (size, size))
+            self.image.set_colorkey(WHITE)
         elif direction == "left" and new_position[1] > 0:
             new_position[1] -= 1
             self.image = player_left
             self.image = pygame.transform.scale(self.image, (size, size))
+            self.image.set_colorkey(WHITE)
         elif direction == "right" and new_position[1] < mapa.columns - 1:
             new_position[1] += 1
             self.image = player_right
             self.image = pygame.transform.scale(self.image, (size, size))
+            self.image.set_colorkey(WHITE)
 
         for seas in mapa.seas:
             if new_position == [seas.row, seas.column]:
@@ -112,10 +117,10 @@ class Player(pygame.sprite.Sprite):
             state = state_not_actual.pop(0)
             state.actual = True
 
-    def explode_bombs(self, mapa):
+    def explode_bombs(self, mapa, wall):
         if self.bombs:
             bomb = self.bombs.pop(0)
-            bomb.explotar(mapa)
+            bomb.destroy_wall(mapa, wall.position)
 
     def potion_taken(self):
         if self.potions:
